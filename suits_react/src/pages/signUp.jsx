@@ -51,7 +51,7 @@ import {
   
           message.success(`Welcome to Suits ${data.user.username}!`);
   
-          navigate("/profile", { replace: true });
+          navigate("/", { replace: true });
         }
       } catch (error) {
         console.error(error);

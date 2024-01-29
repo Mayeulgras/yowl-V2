@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { createGlobalStyle } from "styled-components";
-import { Heart, Bookmark } from 'react-feather';
+import { Heart, Bookmark, X } from 'react-feather';
 
 
 function Post() {
@@ -15,6 +15,21 @@ function Post() {
 
     const handleBookmarkLogoClick = () => {
         setBookmarkLogoColor("#FFFF00");
+    };
+
+    const handleDeleteTweet = async (postId) => {
+        try {
+            const response = await fetch(`http://localhost:1337/api/posts/${postId}`, {
+                method: "DELETE",
+            });
+            if (response.ok) {
+                console.log(`Tweet with ID ${postId} deleted successfully.`);
+            } else {
+                console.error("Failed to delete tweet.");
+            }
+        } catch (error) {
+            console.error("Error deleting tweet:", error);
+        }
     };
 
   useEffect(() => {
@@ -43,36 +58,33 @@ function Post() {
   }, []);   
 
   return (
-    <>
-      <Style />
-      <div>
-        <div className="ul">
-          {Array.isArray(posts.data) && posts.data.map((post) => {
-            const matchingFile = files.find(file => file.id === post.id);
+    <div style={{backgroundColor: 'black', marginTop: '15.2%'}}>
+      {Array.isArray(posts.data) && posts.data.map((post, index) => {
+        const matchingFile = files.find(file => file.id === post.id);
+        const isLastItem = index === posts.data.length - 1;
   
-            return (
-              <div key={post.id}>
-                <div style={{ borderBlockEnd: '1px solid #ccc', marginBottom: '10px', padding: '10px', backgroundColor: 'black' }}>
-                  {matchingFile && (
-                    <img src={`http://localhost:1337${matchingFile.formats.thumbnail.url}`} alt={post.attributes.description} style={{ maxWidth: '100%' }} />
-                  )}
-                  <p>{post.attributes.description}</p>
-                  <a href={post.attributes.link} target="_blank" rel="noopener noreferrer" style={{ color: 'grey' }}>
-                    {post.attributes.link}
-                  </a>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
-                    <div>
-                    <Heart onClick={handleHeartLogoClick} color="#FF0000" size={16} fill={heartLogoColor} /> {/* Icone Like */}
-                    <Bookmark onClick={handleBookmarkLogoClick} size={16} fill={bookmarkLogoColor} /> {/* Icone Like */}
-                    </div>
-                  </div>
+        return (
+          <div key={post.id} style={{ backgroundColor: '#282c34', borderRadius: '10px', margin: isLastItem ? '0px 20px 0px' : '0px 20px 20px', padding: '20px', position: 'relative' }}>
+            <X onClick={() => handleDeleteTweet(post.id)} size={16} color="red" style={{ position: 'absolute', top: '10px', right: '10px' }} />
+            <div style={{ paddingBottom: '10px' }}>
+              {matchingFile && (
+                <img src={`http://localhost:1337${matchingFile.formats.thumbnail.url}`} alt={post.attributes.description} style={{ maxWidth: '100%', borderRadius: '10px' }} />
+              )}
+              <p style={{ color: 'white', fontSize: '16px' }}>{post.attributes.description}</p>
+              <a href={post.attributes.link} target="_blank" rel="noopener noreferrer" style={{ color: '#61dafb', textDecoration: 'none' }}>
+                {post.attributes.link}
+              </a>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
+                <div>
+                  <Heart onClick={handleHeartLogoClick} color="#FF0000" size={16} fill={heartLogoColor} /> {/* Icone Like */}
+                  <Bookmark onClick={handleBookmarkLogoClick} size={16} fill={bookmarkLogoColor} /> {/* Icone Like */}
                 </div>
               </div>
-            );
-          })}
-        </div>
-      </div>
-    </>
+            </div>
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
