@@ -10,18 +10,53 @@ const MyForm = ({ userId }) => {
     setImage(e.target.files[0]);
   };
 
+  const username = localStorage.getItem('username');
+
+
+  // const onSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append('files', image);
+  //     formData.append('data', JSON.stringify({ description, link, user: username }));
+  //     const response = await axios.post("http://localhost:1337/api/posts", formData);
+  //     console.log("POST request successful:", response.data);
+  //   } catch (error) {
+  //     console.error("Error making POST request:", error);
+  //   }
+  // };
+
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
+      // const postData = {
+      //   description,
+      //   link,
+      //   user: username
+      // };
+      const postData = new FormData();
+      postData.append('data', JSON.stringify({ description, link, user: username }));
+  
+      const postResponse = await axios.post("http://localhost:1337/api/posts", postData);
+      console.log("POST request successful:", postResponse.data);
+  
+  
       const formData = new FormData();
       formData.append('files', image);
-      formData.append('data', JSON.stringify({ description, link, user: userId })); // Ajoutez l'ID de l'utilisateur
-      const response = await axios.post("http://localhost:1337/api/posts", formData);
-      console.log("POST request successful:", response.data);
+  
+      const photoResponse = await axios.post(`http://localhost:1337/api/upload`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+  
+      console.log("Photo upload successful:", photoResponse.data);
     } catch (error) {
       console.error("Error making POST request:", error);
     }
   };
+  
+  
 
   return (
     <form style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',height: '50vh', padding: '20px', backgroundColor: '#000000' }}>

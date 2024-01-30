@@ -377,16 +377,7 @@ export interface ApiPostPost extends Schema.CollectionType {
     description: Attribute.Text;
     link: Attribute.String;
     image: Attribute.Media;
-    users_permissions_user: Attribute.Relation<
-      'api::post.post',
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
-    user: Attribute.Relation<
-      'api::post.post',
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
+    user: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -792,11 +783,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     github_username: Attribute.String;
     profile_slug: Attribute.UID<'plugin::users-permissions.user', 'username'>;
     about: Attribute.RichText;
-    posts: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToMany',
-      'api::post.post'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

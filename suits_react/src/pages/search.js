@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBar from '../components/navbar';
-import Recherche from '../components/recherche';
+import Recherche from '../components/search';
 
 const Search = () => {
   return (

@@ -16,7 +16,8 @@ import {
   import { useAuthContext } from "../context/authContext";
   import useScreenSize from "../hooks/useScreenSize";
   import { API } from "../constant";
-  import { setToken } from "../helper";
+  import { setId, setToken, setUsername } from "../helper";
+
   
   const SignUp = () => {
     const { isDesktopView } = useScreenSize();
@@ -45,6 +46,8 @@ import {
         } else {
           // set the token
           setToken(data.jwt);
+          setId(data.user.id);
+          setUsername(data.user.username);
   
           // set the user
           setUser(data.user);
@@ -109,7 +112,13 @@ import {
                 <Form.Item
                   label="Password"
                   name="password"
-                  rules={[{ required: true }]}
+                  rules={[
+                    { required: true, message: 'Please input your password!' },
+                    { min: 12, message: 'Password must be at least 12 characters.' },
+                    { pattern: /[A-Z]/, message: 'Password must contain an uppercase letter.' },
+                    { pattern: /[0-9]/, message: 'Password must contain a number.' },
+                    { pattern: /[^A-Za-z0-9]/, message: 'Password must contain a special character.' },
+                  ]}
                 >
                   <Input.Password placeholder="Password" />
                 </Form.Item>

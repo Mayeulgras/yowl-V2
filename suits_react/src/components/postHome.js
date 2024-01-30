@@ -7,17 +7,21 @@ function Post() {
     const [posts, setPosts] = useState([]);
     const [files, setFiles] = useState([]);
     const [heartLogoColor, setHeartLogoColor] = useState("#ffffff");
+    const [likedPost, setLikedPost] = useState(null);
     const [bookmarkLogoColor, setBookmarkLogoColor] = useState("#ffffff");
 
-    const handleHeartLogoClick = () => {
+    const handleHeartLogoClick = (postId) => {
         setHeartLogoColor("#FF0000");
+        setLikedPost(postId);
       };
 
     const handleBookmarkLogoClick = () => {
         setBookmarkLogoColor("#FFFF00");
     };
 
-    const handleDeleteTweet = async (postId) => {
+    const handleDeleteTweet = async (postId, post) => {
+    const loggedInUsername = localStorage.getItem('username');
+      if (loggedInUsername === post) {
         try {
             const response = await fetch(`http://localhost:1337/api/posts/${postId}`, {
                 method: "DELETE",
@@ -31,6 +35,8 @@ function Post() {
             console.error("Error deleting tweet:", error);
         }
     };
+  }
+
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -65,8 +71,9 @@ function Post() {
   
         return (
           <div key={post.id} style={{ backgroundColor: '#282c34', borderRadius: '10px', margin: isLastItem ? '0px 20px 0px' : '0px 20px 20px', padding: '20px', position: 'relative' }}>
-            <X onClick={() => handleDeleteTweet(post.id)} size={16} color="red" style={{ position: 'absolute', top: '10px', right: '10px' }} />
+            <X onClick={() => handleDeleteTweet(post.id, post.attributes.user)} size={24} color="red" style={{ position: 'absolute', top: '10px', right: '10px' }} />
             <div style={{ paddingBottom: '10px' }}>
+            <p style={{ color: 'white', fontSize: '25px' }}>{post.attributes.user}</p>
               {matchingFile && (
                 <img src={`http://localhost:1337${matchingFile.formats.thumbnail.url}`} alt={post.attributes.description} style={{ maxWidth: '100%', borderRadius: '10px' }} />
               )}
@@ -76,8 +83,8 @@ function Post() {
               </a>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
                 <div>
-                  <Heart onClick={handleHeartLogoClick} color="#FF0000" size={16} fill={heartLogoColor} /> {/* Icone Like */}
-                  <Bookmark onClick={handleBookmarkLogoClick} size={16} fill={bookmarkLogoColor} /> {/* Icone Like */}
+                  <Heart onClick={() => handleHeartLogoClick(post.id)} size={22} fill={post.id === likedPost ? 'red' : heartLogoColor} /> {/* Icone Like */}
+                  <Bookmark onClick={handleBookmarkLogoClick} size={22} fill={bookmarkLogoColor} /> {/* Icone Like */}
                 </div>
               </div>
             </div>

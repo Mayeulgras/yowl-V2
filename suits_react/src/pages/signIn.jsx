@@ -16,7 +16,7 @@ import {
   import { useAuthContext } from "../context/authContext";
   import useScreenSize from "../hooks/useScreenSize";
   import { API } from "../constant";
-  import { setId, setToken } from "../helper";
+  import { setId, setToken, setUsername } from "../helper";
   
   const SignIn = () => {
     const { isDesktopView } = useScreenSize();
@@ -50,6 +50,7 @@ import {
           // set the token
           setToken(data.jwt);
           setId(data.user.id);
+          setUsername(data.user.username);
   
           // set the user
           setUser(data.user);
@@ -102,7 +103,7 @@ import {
                 <Form.Item
                   label="Password"
                   name="password"
-                  rules={[{ required: true }]}
+                  rules={[{ required: true}]}
                 >
                   <Input.Password placeholder="Password" />
                 </Form.Item>
