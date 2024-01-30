@@ -10,7 +10,8 @@ const MyForm = ({ userId }) => {
     setImage(e.target.files[0]);
   };
 
-  const onSubmit = async () => {
+  const onSubmit = async (e) => {
+    e.preventDefault();
     try {
       const formData = new FormData();
       formData.append('files', image);

@@ -6,10 +6,12 @@ import Profil from './pages/profil';
 import Search from './pages/search';
 import SignUp from './pages/signUp';
 import SignIn from './pages/signIn';
+import InfoPro from './pages/infoPro';
 
 const App = () => {
   return (
       <Routes>
+      <Route path="/infoPro" element={<InfoPro />} />
       <Route path="/signUp" element={<SignUp />} />
       <Route path="/signIn" element={<SignIn />} />
       <Route path="/" element={<Home />} />

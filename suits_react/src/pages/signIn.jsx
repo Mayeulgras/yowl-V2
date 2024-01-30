@@ -16,7 +16,7 @@ import {
   import { useAuthContext } from "../context/authContext";
   import useScreenSize from "../hooks/useScreenSize";
   import { API } from "../constant";
-  import { setToken } from "../helper";
+  import { setId, setToken } from "../helper";
   
   const SignIn = () => {
     const { isDesktopView } = useScreenSize();
@@ -49,6 +49,7 @@ import {
         } else {
           // set the token
           setToken(data.jwt);
+          setId(data.user.id);
   
           // set the user
           setUser(data.user);

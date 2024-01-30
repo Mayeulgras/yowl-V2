@@ -92,13 +92,13 @@ const Profile = () => {
                 },
               ]}
             >
-              <Input.TextArea placeholder="About" rows={6} />
+                <Input placeholder="About" />
             </Form.Item>
           </Col>
           <Col md={8} lg={8} sm={24} xs={24}>
             <Form.Item
-              label="Twitter Username"
-              name="twitter_username"
+              label="About"
+              name="about"
               rules={[
                 {
                   type: "string",
@@ -110,8 +110,8 @@ const Profile = () => {
           </Col>
           <Col md={8} lg={8} sm={24} xs={24}>
             <Form.Item
-              label="Github Username"
-              name="github_username"
+              label="LinkedIn Username"
+              name="linkedIn_username"
               rules={[
                 {
                   type: "string",
@@ -123,8 +123,8 @@ const Profile = () => {
           </Col>
           <Col md={8} lg={8} sm={24} xs={24}>
             <Form.Item
-              label="Website Url"
-              name="website_url"
+              label="Github Username"
+              name="github_username"
               rules={[
                 {
                   type: "url",
