@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import { Heart, Bookmark, X } from 'react-feather';
-
-
+export const refreshPage = () =>{
+  window.location.reload(false);
+  }
+  
 function Post() {
     const [posts, setPosts] = useState([]);
     const [files, setFiles] = useState([]);
-    const [heartLogoColor, setHeartLogoColor] = useState("#ffffff");
+    const [heartLogoColor, setHeartLogoColor] = useState("#000000");
     const [likedPost, setLikedPost] = useState(null);
     const [bookmarkLogoColor, setBookmarkLogoColor] = useState("#ffffff");
 
     const handleHeartLogoClick = (postId) => {
-        setHeartLogoColor("#FF0000");
+        setHeartLogoColor("#ffffff");
         setLikedPost(postId);
       };
-
+    
     const handleBookmarkLogoClick = () => {
         setBookmarkLogoColor("#FFFF00");
     };
-
     const handleDeleteTweet = async (postId, post) => {
     const loggedInUsername = localStorage.getItem('username');
       if (loggedInUsername === post) {
@@ -27,16 +28,16 @@ function Post() {
                 method: "DELETE",
             });
             if (response.ok) {
-                console.log(`Tweet with ID ${postId} deleted successfully.`);
+                console.log(`Post with ID ${postId} deleted successfully.`);
             } else {
-                console.error("Failed to delete tweet.");
+                console.error("Failed to delete post.");
             }
         } catch (error) {
-            console.error("Error deleting tweet:", error);
+            console.error("Error deleting post:", error);
         }
     };
+    refreshPage();
   }
-
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -64,27 +65,26 @@ function Post() {
   }, []);   
 
   return (
-    <div style={{backgroundColor: 'black', marginTop: '15.2%'}}>
+    <div style={{backgroundColor: '#000000', marginTop: '15.2%', padding: '20px'}}>
       {Array.isArray(posts.data) && posts.data.map((post, index) => {
         const matchingFile = files.find(file => file.id === post.id);
         const isLastItem = index === posts.data.length - 1;
   
         return (
-          <div key={post.id} style={{ backgroundColor: '#282c34', borderRadius: '10px', margin: isLastItem ? '0px 20px 0px' : '0px 20px 20px', padding: '20px', position: 'relative' }}>
-            <X onClick={() => handleDeleteTweet(post.id, post.attributes.user)} size={24} color="red" style={{ position: 'absolute', top: '10px', right: '10px' }} />
-            <div style={{ paddingBottom: '10px' }}>
-            <p style={{ color: 'white', fontSize: '25px' }}>{post.attributes.user}</p>
+          <div key={post.id} style={{ backgroundColor: '#000000', margin: isLastItem ? '0px 0px 0px' : '0px 0px 20px', padding: '20px', position: 'relative', boxShadow: '0 2px 5px rgba(0, 0, 0, 0.15)', transition: 'all 0.3s linear', borderLeft: "solid 2px white", marginBottom:"0px", paddingTop:"0px", marginBottom: "50px" }}>
+            <X onClick={() => handleDeleteTweet(post.id, post.attributes.user)} size={24} color="gray" style={{ position: 'absolute', top: '10px', right: '10px' }} />
+            <div>
+              <p style={{ color: '#ffffff', fontSize: '30px', fontFamily: 'Poppins', fontWeight: 'bold', paddingBottom: '15px' }}>{post.attributes.user}</p>
               {matchingFile && (
-                <img src={`http://localhost:1337${matchingFile.formats.thumbnail.url}`} alt={post.attributes.description} style={{ maxWidth: '100%', borderRadius: '10px' }} />
+                <img src={`http://localhost:1337${matchingFile.formats.thumbnail.url}`} alt={post.attributes.description} style={{marginBottom: '10px', width: '100%'}} />
               )}
-              <p style={{ color: 'white', fontSize: '16px' }}>{post.attributes.description}</p>
-              <a href={post.attributes.link} target="_blank" rel="noopener noreferrer" style={{ color: '#61dafb', textDecoration: 'none' }}>
-                {post.attributes.link}
+              <p style={{ color: '#ffffff', fontSize: '15px', fontFamily: 'Poppins', fontWeight: 'Regular', paddingBottom: "15px" }}>{post.attributes.description}</p>
+              <a href={post.attributes.link} target="_blank" rel="noopener noreferrer" style={{ color: '#94a3b8', textDecoration: 'none', overflowWrap: 'break-word', paddingBottom: "25px"}}>
+                {post.attributes.wordLink}
               </a>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
                 <div>
-                  <Heart onClick={() => handleHeartLogoClick(post.id)} size={22} fill={post.id === likedPost ? 'red' : heartLogoColor} /> {/* Icone Like */}
-                  <Bookmark onClick={handleBookmarkLogoClick} size={22} fill={bookmarkLogoColor} /> {/* Icone Like */}
+                  <Heart stroke="white" onClick={() => handleHeartLogoClick(post.id)} size={22} fill={post.id === likedPost ? 'white' : heartLogoColor} /> {/* Icone Like */}
                 </div>
               </div>
             </div>
@@ -96,6 +96,7 @@ function Post() {
 }
 
 const Style = createGlobalStyle`
+
 .ul {
     background-color: black;
     list-style-type: disc;
@@ -109,6 +110,5 @@ p {
 
 
 `;
-
 
 export default Post;

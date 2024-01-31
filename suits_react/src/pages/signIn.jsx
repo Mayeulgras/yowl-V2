@@ -47,12 +47,9 @@ import {
         if (data?.error) {
           throw data?.error;
         } else {
-          // set the token
           setToken(data.jwt);
           setId(data.user.id);
           setUsername(data.user.username);
-  
-          // set the user
           setUser(data.user);
   
           message.success(`Welcome back ${data.user.username}!`);
@@ -71,7 +68,7 @@ import {
       <Fragment>
         <Row align="middle">
           <Col span={isDesktopView ? 8 : 24} offset={isDesktopView ? 8 : 0}>
-            <Card title="SignIn">
+            <Card title="Sign in">
               {error ? (
                 <Alert
                   className="alert_error"
@@ -119,7 +116,7 @@ import {
                 </Form.Item>
               </Form>
               <Typography.Paragraph className="form_help_text">
-                New to Social Cards? <Link to="/signup">Sign Up</Link>
+                New to Suits? <Link to="/signup">Sign Up</Link>
               </Typography.Paragraph>
             </Card>
           </Col>

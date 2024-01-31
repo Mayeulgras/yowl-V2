@@ -1,9 +1,7 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Oswald&family=Poppins:wght@200;500;700;900&family=Roboto:wght@300;700&display=swap');
-</style>
+
 const windowDimension = window.innerWidth;
 const isMobile = windowDimension <= 640;
 
@@ -14,7 +12,7 @@ const TopBar = () => {
       {isMobile ? (
         <div className="top-bar">
           <div className="brand">
-            <p>SUITS</p>
+            <p style={{fontFamily: "PoppinsExtra", }}>SUITS</p>
           </div>
         </div>
       ) : null}
@@ -34,7 +32,8 @@ body {
     width: 100%;
     background-color: #000000;
     color: #fff;
-    padding: 10px;
+    padding-top: 20px;
+    padding-left: 10px;
     display: flex;
     justify-content: left;
     z-index: 1000;

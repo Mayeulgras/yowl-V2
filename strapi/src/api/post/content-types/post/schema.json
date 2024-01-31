@@ -28,6 +28,9 @@
     },
     "user": {
       "type": "text"
+    },
+    "wordLink": {
+      "type": "string"
     }
   }
 }

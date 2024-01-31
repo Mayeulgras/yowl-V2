@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import { Home, PlusCircle, Search, User } from "react-feather";
 import { Link } from 'react-router-dom';
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Oswald&family=Poppins:wght@200;500;700&family=Roboto:wght@300;700&display=swap');
-</style>
 
 function useBarNav() {
   const [windowDimension, setWindowDimension] = useState(null);
@@ -54,7 +51,7 @@ function useBarNav() {
             <MobileNavbar.Item>
             <Link to="/">
               <MobileNavbar.Icon>
-                <Home onClick={handleHomeLogoClick} color={homeLogoColor} size={16} />
+                <Home onClick={handleHomeLogoClick} color={homeLogoColor} size={24} />
               </MobileNavbar.Icon>
 
               </Link>
@@ -62,7 +59,7 @@ function useBarNav() {
             <MobileNavbar.Item>
             <Link to="/search">
               <MobileNavbar.Icon>
-                <Search onClick={handleSearchLogoClick} color={searchLogoColor} size={16} />
+                <Search onClick={handleSearchLogoClick} color={searchLogoColor} size={24} />
               </MobileNavbar.Icon>
               
             </Link>
@@ -70,14 +67,14 @@ function useBarNav() {
             <MobileNavbar.Item>
             <Link to="/post">
               <MobileNavbar.Icon>
-                <PlusCircle onClick={handlePlusLogoClick} color={plusLogoColor} size={16} />
+                <PlusCircle onClick={handlePlusLogoClick} color={plusLogoColor} size={24} />
               </MobileNavbar.Icon>
               </Link>
             </MobileNavbar.Item>
             <MobileNavbar.Item>
             <Link to="/profil">
               <MobileNavbar.Icon>
-                <User onClick={handleProfileLogoClick} color={profileLogoColor} size={16} />
+                <User onClick={handleProfileLogoClick} color={profileLogoColor} size={24} />
               </MobileNavbar.Icon>
               
             </Link>
@@ -102,7 +99,8 @@ const Styles = {
   Wrapper: styled.main`
     display: flex;
     background-color: #000000;
-    height: 100vh;
+    height: 0vh;
+   
   `
 };
 
