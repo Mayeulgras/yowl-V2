@@ -1,5 +1,8 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
+import { Link } from 'react-router-dom';
+import { LogIn } from "react-feather";
+
 
 
 const windowDimension = window.innerWidth;
@@ -10,9 +13,15 @@ const TopBar = () => {
     <>
     <CSSReset />
       {isMobile ? (
-        <div className="top-bar">
+        <div className="top-bar" style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div className="brand">
             <p style={{fontFamily: "PoppinsExtra", }}>SUITS</p>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <p style={{marginLeft: "-20%", marginTop: "6%", marginRight: "20%"}}>No account ?</p>
+          <Link to="/signIn">
+          <LogIn style={{marginLeft: "-55%", marginTop: "8%", color: "white"}}/>
+          </Link>
           </div>
         </div>
       ) : null}

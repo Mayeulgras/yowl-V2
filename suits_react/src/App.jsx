@@ -11,9 +11,9 @@ import InfoPro from './pages/infoPro';
 const App = () => {
   return (
       <Routes>
+      <Route path="/signIn" element={<SignIn />} />
       <Route path="/infoPro" element={<InfoPro />} />
       <Route path="/signUp" element={<SignUp />} />
-      <Route path="/signIn" element={<SignIn />} />
       <Route path="/" element={<Home />} />
       <Route path="/post" element={<Post />} />
       <Route path="/profil" element={<Profil />} />

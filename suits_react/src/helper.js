@@ -1,6 +1,7 @@
 import { AUTH_TOKEN } from "./constant";
 import { ID } from "./constant";
 import { USERNAME } from "./constant";
+import { IMG } from "./constant";
     
 export const getToken = () => {
   return localStorage.getItem(AUTH_TOKEN);
@@ -42,4 +43,18 @@ export const setUsername = (U) => {
 
 export const removeUsername = () => {
   localStorage.removeItem(USERNAME);
+};
+
+export const getImg = () => {
+  return localStorage.getItem(IMG);
+};
+
+export const setImg = (I) => {
+  if (I) {
+    localStorage.setItem(IMG, I);
+  }
+};
+
+export const removeImg = () => {
+  localStorage.removeItem(IMG);
 };

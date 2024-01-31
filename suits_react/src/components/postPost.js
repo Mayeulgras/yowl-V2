@@ -15,6 +15,7 @@ const MyForm = ({ userId }) => {
   };
 
   const username = localStorage.getItem('username');
+  const avatar = localStorage.getItem('avatar');
 
 
   const onSubmit = async (e) => {
@@ -22,7 +23,7 @@ const MyForm = ({ userId }) => {
     try {
 
       const postData = new FormData();
-      postData.append('data', JSON.stringify({ description, wordLink, link, user: username }));
+      postData.append('data', JSON.stringify({ description, wordLink, link, user: username, av: avatar }));
       const postResponse = await axios.post("http://localhost:1337/api/posts", postData);
       console.log("POST request successful:", postResponse.data);
   
@@ -47,7 +48,7 @@ const MyForm = ({ userId }) => {
   
 
   return (
-    <form style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '50vh', padding: '20px', backgroundColor: '#000000' }}>
+    <form style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh', padding: '20px', backgroundColor: '#000000' }}>
       <h1 style={{ marginBottom: '20px', color: "white", fontFamily: 'Poppins' }}>Make a post !</h1>
       <input value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" style={{ margin: '10px', padding: '10px', width: '80%', backgroundColor: '#fff', color: '#333', borderBottom: '1px solid #ccc', borderRadius: '10px', fontSize: '1.2em' }} />
       <input value={link} onChange={(e) => setLink(e.target.value)} placeholder="Link" style={{ margin: '10px', padding: '10px', width: '80%', backgroundColor: '#fff', color: '#333', borderBottom: '1px solid #ccc', borderRadius: '10px', fontSize: '1.2em' }} />

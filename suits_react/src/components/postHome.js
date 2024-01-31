@@ -9,19 +9,22 @@ function Post() {
     const [posts, setPosts] = useState([]);
     const [files, setFiles] = useState([]);
     const [heartLogoColor, setHeartLogoColor] = useState("#000000");
-    const [likedPost, setLikedPost] = useState(null);
+    const [likedPosts, setLikedPosts] = useState([]);
     const [bookmarkLogoColor, setBookmarkLogoColor] = useState("#ffffff");
 
     const handleHeartLogoClick = (postId) => {
-        setHeartLogoColor("#ffffff");
-        setLikedPost(postId);
-      };
-    
-    const handleBookmarkLogoClick = () => {
-        setBookmarkLogoColor("#FFFF00");
+      if (likedPosts.includes(postId)) {
+        setLikedPosts(likedPosts.filter(id => id !== postId));
+      } else {
+        setLikedPosts([...likedPosts, postId]);
+      }
     };
-    const handleDeleteTweet = async (postId, post) => {
+    
+    
+     
     const loggedInUsername = localStorage.getItem('username');
+
+    const handleDeleteTweet = async (postId, post) => {
       if (loggedInUsername === post) {
         try {
             const response = await fetch(`http://localhost:1337/api/posts/${postId}`, {
@@ -72,9 +75,12 @@ function Post() {
   
         return (
           <div key={post.id} style={{ backgroundColor: '#000000', margin: isLastItem ? '0px 0px 0px' : '0px 0px 20px', padding: '20px', position: 'relative', boxShadow: '0 2px 5px rgba(0, 0, 0, 0.15)', transition: 'all 0.3s linear', borderLeft: "solid 2px white", marginBottom:"0px", paddingTop:"0px", marginBottom: "50px" }}>
-            <X onClick={() => handleDeleteTweet(post.id, post.attributes.user)} size={24} color="gray" style={{ position: 'absolute', top: '10px', right: '10px' }} />
+            {post.attributes.user === loggedInUsername && <X onClick={() => handleDeleteTweet(post.id, post.attributes.user)} size={24} color="gray" style={{ position: 'absolute', top: '10px', right: '10px' }} />}
             <div>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <img src={post.attributes.av} alt="Avatar" style={{ width: '50px', borderRadius: '50%', marginRight: '10px', marginBottom: "15px" }} />
               <p style={{ color: '#ffffff', fontSize: '30px', fontFamily: 'Poppins', fontWeight: 'bold', paddingBottom: '15px' }}>{post.attributes.user}</p>
+            </div>
               {matchingFile && (
                 <img src={`http://localhost:1337${matchingFile.formats.thumbnail.url}`} alt={post.attributes.description} style={{marginBottom: '10px', width: '100%'}} />
               )}
@@ -84,7 +90,7 @@ function Post() {
               </a>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
                 <div>
-                  <Heart stroke="white" onClick={() => handleHeartLogoClick(post.id)} size={22} fill={post.id === likedPost ? 'white' : heartLogoColor} /> {/* Icone Like */}
+                <Heart stroke="white" onClick={() => handleHeartLogoClick(post.id)} size={22} fill={likedPosts.includes(post.id) ? 'white' : 'black'} />
                 </div>
               </div>
             </div>

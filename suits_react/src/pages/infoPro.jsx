@@ -92,7 +92,7 @@ const Profile = () => {
                 },
               ]}
             >
-                <Input placeholder="About" />
+                <Input placeholder="Avatar Url" />
             </Form.Item>
           </Col>
           <Col md={8} lg={8} sm={24} xs={24}>
@@ -105,7 +105,7 @@ const Profile = () => {
                 },
               ]}
             >
-              <Input placeholder="LinkedIn Username" />
+              <Input placeholder="About" />
             </Form.Item>
           </Col>
           <Col md={8} lg={8} sm={24} xs={24}>
@@ -118,7 +118,7 @@ const Profile = () => {
                 },
               ]}
             >
-              <Input placeholder="Github Username" />
+              <Input placeholder="LinkedIn Username" />
             </Form.Item>
           </Col>
           <Col md={8} lg={8} sm={24} xs={24}>
@@ -127,11 +127,11 @@ const Profile = () => {
               name="github_username"
               rules={[
                 {
-                  type: "url",
+                  type: "string",
                 },
               ]}
             >
-              <Input placeholder="Website Url" />
+              <Input placeholder="Github Username" />
             </Form.Item>
           </Col>
         </Row>

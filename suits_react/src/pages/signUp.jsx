@@ -9,6 +9,7 @@ import {
     Row,
     Spin,
     Typography,
+    Checkbox,
   } from "antd";
   import React, { Fragment, useState } from "react";
   import { Link } from "react-router-dom";
@@ -121,6 +122,16 @@ import {
                   ]}
                 >
                   <Input.Password placeholder="Password" />
+                </Form.Item>
+
+                <Form.Item
+                  name="acceptCGU"
+                  valuePropName="checked"
+                  rules={[
+                      { required: true, message: 'Please accept the CGU!' },
+                  ]}
+                >
+                  <Checkbox>Accept the CGU</Checkbox>
                 </Form.Item>
   
                 <Form.Item>

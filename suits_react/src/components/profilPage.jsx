@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import SignIn from '../pages/signIn';
 import profil from '../css/profil.css';
 import axios from 'axios';
-import { removeToken,removeId,removeUsername } from '../helper';
+import { Settings } from 'react-feather'
+import { removeToken,removeId,removeUsername, removeImg } from '../helper';
 
 
 const userId = localStorage.getItem('id')
@@ -14,6 +15,7 @@ const logout = () => {
   removeId('id');
   removeToken('authToken');
   removeUsername('username');
+  removeImg('avatar');
   navigate("/signIn");
   message.success(`Disconnected successfully!`);
   };
@@ -48,13 +50,17 @@ const logout = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: '#000000', minHeight: '100vh', padding: '50px 0' }}>
+      <div style={{ position: 'absolute', top: '15px', right: '15px' }}>
+        <Settings color="white" />
+      </div>
       <h1 style={{ marginBottom: '20px', color:"white" }}>User Profile</h1>
       {userData && (
         <div style={{ backgroundColor: '#ffffff', color: '#333', padding: '20px', borderRadius: '5px', width: '80%', margin: '20px auto', boxShadow: '0 2px 5px rgba(0, 0, 0, 0.15)', transition: 'all 0.3s linear' }}>
+          <img src={userData.avatar_url} alt="Avatar" style={{ width: '150px', height: '150px', borderRadius: '50%', objectFit: 'cover', marginBottom: '20px', marginLeft: "25%" }} />
           <p style={{ marginBottom: '10px' }}><strong>Username:</strong> {userData.username}</p>
           <p style={{ marginBottom: '10px' }}><strong>Email:</strong> {userData.email}</p>
-          <p style={{ marginBottom: '10px' }}><strong>Website URL:</strong> {userData.website_url}</p>
           <p style={{ marginBottom: '10px' }}><strong>LinkedIn:</strong> {userData.linkedin_username}</p>
+          <p style={{ marginBottom: '10px' }}><strong>GitHub:</strong> {userData.github_username}</p>
           <p style={{ marginBottom: '10px' }}><strong>Bio:</strong> {userData.about}</p>
           <button onClick={logout} style={{ margin: '10px', padding: '10px', backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '5px' }}>Disconnect</button>
           <button onClick={editProfil} style={{ margin: '10px', padding: '10px', backgroundColor: '#808080', color: 'white', border: 'none', borderRadius: '5px' }}>Edit profil</button>

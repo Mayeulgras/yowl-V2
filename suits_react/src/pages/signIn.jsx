@@ -16,7 +16,7 @@ import {
   import { useAuthContext } from "../context/authContext";
   import useScreenSize from "../hooks/useScreenSize";
   import { API } from "../constant";
-  import { setId, setToken, setUsername } from "../helper";
+  import { setId, setImg, setToken, setUsername } from "../helper";
   
   const SignIn = () => {
     const { isDesktopView } = useScreenSize();
@@ -51,6 +51,7 @@ import {
           setId(data.user.id);
           setUsername(data.user.username);
           setUser(data.user);
+          setImg(data.user.avatar_url)
   
           message.success(`Welcome back ${data.user.username}!`);
   

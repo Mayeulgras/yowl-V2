@@ -31,6 +31,9 @@
     },
     "wordLink": {
       "type": "string"
+    },
+    "av": {
+      "type": "string"
     }
   }
 }

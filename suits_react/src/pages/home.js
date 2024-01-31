@@ -10,7 +10,6 @@ const Home = () => {
       <TopBar />
       <PostHome />
       <NavBar />
-
     </div>
   );
 };
