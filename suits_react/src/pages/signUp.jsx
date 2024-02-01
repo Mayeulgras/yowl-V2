@@ -18,7 +18,16 @@ import {
   import useScreenSize from "../hooks/useScreenSize";
   import { API } from "../constant";
   import { setId, setToken, setUsername } from "../helper";
+  import { createGlobalStyle } from "styled-components";
 
+
+  const GlobalStyle = createGlobalStyle`
+  .my-input::placeholder,
+  .my-password-input::placeholder {
+    color: white;
+    font-size: 22px;
+  }
+  `;
   
   const SignUp = () => {
     const { isDesktopView } = useScreenSize();
@@ -69,7 +78,8 @@ import {
       <Fragment>
         <Row align="middle">
           <Col span={isDesktopView ? 8 : 24} offset={isDesktopView ? 8 : 0}>
-            <Card title="Sign up">
+            <Card style={{ background: "#000000", paddingTop: "50px"}} headStyle={{color: "White"}}>
+            <h1 style={{ color:"white", fontFamily:"Poppins", fontSize:"32px", marginBottom: "0px"}}>Create an account !</h1>
               {error ? (
                 <Alert
                   className="alert_error"
@@ -84,9 +94,10 @@ import {
                 layout="vertical"
                 onFinish={onFinish}
                 autoComplete="off"
+                style={{height: "78vh", width: "40vh"}}
               >
                 <Form.Item
-                  label="Username"
+                  label=""
                   name="username"
                   rules={[
                     {
@@ -95,10 +106,10 @@ import {
                     },
                   ]}
                 >
-                  <Input placeholder="Username" />
+                  <Input className="my-input" placeholder="Username" style={{backgroundColor: "#000000",border: "none", borderBottom: "1px solid", borderColor: "lightgrey", borderRadius:"0px", paddingTop: '67px',  color:"white", fontsize: "22px"}} />
                 </Form.Item>
                 <Form.Item
-                  label="Email"
+                  label=""
                   name="email"
                   rules={[
                     {
@@ -107,11 +118,11 @@ import {
                     },
                   ]}
                 >
-                  <Input placeholder="Email address" />
+                  <Input className="my-input" placeholder="Email address" style={{backgroundColor: "#000000",border: "none", borderBottom: "1px solid", borderColor: "lightgrey", borderRadius:"0px", paddingTop: '67px', color:"white", fontsize: "22px"}}/>
                 </Form.Item>
   
                 <Form.Item
-                  label="Password"
+                  label=""
                   name="password"
                   rules={[
                     { required: true, message: 'Please input your password!' },
@@ -121,7 +132,7 @@ import {
                     { pattern: /[^A-Za-z0-9]/, message: 'Password must contain a special character.' },
                   ]}
                 >
-                  <Input.Password placeholder="Password" />
+                  <Input className="my-input" placeholder="Password" style={{backgroundColor: "#000000",border: "none", borderBottom: "1px solid", borderColor: "lightgrey", borderRadius:"0px", paddingTop: '67px', color:"white", fontsize: "22px"}} />
                 </Form.Item>
 
                 <Form.Item
@@ -131,21 +142,23 @@ import {
                       { required: true, message: 'Please accept the CGU!' },
                   ]}
                 >
-                  <Checkbox>Accept the CGU</Checkbox>
+                  <Checkbox style={{color: "white", paddingTop: '40px'}}>I accept the CGU</Checkbox>
                 </Form.Item>
   
-                <Form.Item>
+                <Form.Item style={{ textAlign: "center"}}>
                   <Button
                     type="primary"
                     htmlType="submit"
                     className="login_submit_btn"
+                    style={{ backgroundColor: "#ffffff", color:"black", padding: "0 80px", fontSize: "18px", borderRadius: '50px', fontFamily: "Poppins" }}
                   >
-                    Submit {isLoading && <Spin size="small" />}
+                    Register {isLoading && <Spin size="small" />}
                   </Button>
                 </Form.Item>
+                <GlobalStyle />
               </Form>
-              <Typography.Paragraph className="form_help_text">
-                Already have an account? <Link to="/signIn">Sign In</Link>
+              <Typography.Paragraph className="form_help_text"style={{ color: "white", textAlign: "center", fontSize: "15px", fontFamily: "Poppins" }}>
+                Already have an account ? <Link to="/signIn" style={{color: "white", textDecoration: "underline"}}>Click here</Link>
               </Typography.Paragraph>
             </Card>
           </Col>

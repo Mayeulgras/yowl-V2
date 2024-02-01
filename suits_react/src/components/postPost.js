@@ -50,11 +50,11 @@ const MyForm = ({ userId }) => {
   return (
     <form style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh', padding: '20px', backgroundColor: '#000000' }}>
       <h1 style={{ marginBottom: '20px', color: "white", fontFamily: 'Poppins' }}>Make a post !</h1>
-      <input value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" style={{ margin: '10px', padding: '10px', width: '80%', backgroundColor: '#fff', color: '#333', borderBottom: '1px solid #ccc', borderRadius: '10px', fontSize: '1.2em' }} />
-      <input value={link} onChange={(e) => setLink(e.target.value)} placeholder="Link" style={{ margin: '10px', padding: '10px', width: '80%', backgroundColor: '#fff', color: '#333', borderBottom: '1px solid #ccc', borderRadius: '10px', fontSize: '1.2em' }} />
-      <input value={wordLink} onChange={(e) => setWordLink(e.target.value)} placeholder="Word for link" style={{ margin: '10px', padding: '10px', width: '80%', backgroundColor: '#fff', color: '#333', borderBottom: '1px solid #ccc', borderRadius: '10px', fontSize: '1.2em' }} />
-      <input type="file" onChange={handleImageChange} required style={{ margin: '10px', color: '#333', backgroundColor: '#fff', borderBottom: '1px solid #ccc', borderRadius: '10px', fontSize: '1.2em' }}/>
-      <button type="button" onClick={onSubmit} style={{ margin: '10px', padding: '10px', width: '80%', backgroundColor: '#808080', color: 'white', border: 'none', borderRadius: '5px' }}>Post</button>
+      <input value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" style={{width: "80%", backgroundColor: "#000000",border: "none", borderBottom: "1px solid", borderColor: "lightgrey", borderRadius:"0px", paddingTop: '67px', color:"white", fontsize: "22px"}} />
+      <input value={link} onChange={(e) => setLink(e.target.value)} placeholder="Link" style={{width: "80%", backgroundColor: "#000000",border: "none", borderBottom: "1px solid", borderColor: "lightgrey", borderRadius:"0px", paddingTop: '67px', color:"white", fontsize: "22px"}} />
+      <input value={wordLink} onChange={(e) => setWordLink(e.target.value)} placeholder="Word for link" style={{width: "80%", backgroundColor: "#000000",border: "none", borderBottom: "1px solid", borderColor: "lightgrey", borderRadius:"0px", paddingTop: '67px', color:"white", fontsize: "22px"}} />
+      <input type="file" onChange={handleImageChange} required style={{width: "80%", backgroundColor: "#000000",border: "none", borderBottom: "1px solid", borderColor: "lightgrey", borderRadius:"0px", paddingTop: '67px', color:"white", fontsize: "22px"}}/>
+      <button type="button" onClick={onSubmit} style={{ backgroundColor: "#ffffff", color:"black", padding: "0 80px", fontSize: "18px", borderRadius: '50px',marginTop: "40px", fontFamily: "Poppins" }}>Post</button>
     </form>
   );
 };

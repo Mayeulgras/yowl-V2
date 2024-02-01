@@ -24,20 +24,12 @@ const SearchPage = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: '#000000', minHeight: '100vh', padding: '50px 0' }}>
-      <h1 style={{ marginBottom: '20px', color: "white", fontFamily: 'Poppins' }}>Search Profiles</h1>
+      <h1 style={{ marginBottom: '20px', color: "white", fontFamily: 'Poppins' }}>Search Profiles !</h1>
       <input
         type="text"
-        placeholder="Search profiles..."
         value={searchTerm}
         onChange={e => setSearchTerm(e.target.value)}
-        style={{
-          padding: '10px',
-          width: '80%',
-          maxWidth: '500px',
-          borderRadius: '5px',
-          border: '1px solid #ccc',
-          marginBottom: '20px'
-        }}
+        className="my-input" placeholder="Search" style={{width:"70%", backgroundColor: "#000000",border: "none", borderBottom: "1px solid", borderColor: "lightgrey", borderRadius:"0px",paddingTop: "30px", color:"white", fontsize: "22px"}}
       />
       <div style={{ width: '80%', maxWidth: '500px' }}>
         {searchTerm && filteredProfiles.map(profile => (

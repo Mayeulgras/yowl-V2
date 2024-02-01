@@ -3,17 +3,22 @@ import React from 'react';
 const Profile = ({ profileData }) => {
   return (
     <div style={{
-      backgroundColor: 'white',
-      color: 'black',
-      padding: '20px',
+      backgroundColor: 'black',
+      color: 'white',
+      padding: '10px',
       borderRadius: '5px',
       width: '80%',
-      margin: '20px auto',
+      margin: '5px auto 5px 0', // Réduire la marge à droite
       boxShadow: '0 2px 5px rgba(0, 0, 0, 0.15)',
-      transition: 'all 0.3s linear'
+      transition: 'all 0.3s linear',
+      display: 'flex', // Ajout de Flexbox
+      alignItems: 'center' // Centrer les éléments verticalement
     }}>
-      <p style={{ marginBottom: '10px' }}><strong>Nom:</strong> {profileData.username}</p>
-      <p style={{ marginBottom: '10px' }}><strong>Email:</strong> {profileData.email}</p>
+      <img src={profileData.avatar_url} style={{ width: '70px', borderRadius: '50%', marginRight: '20px' }} />
+      <div>
+        <p style={{ marginBottom: '10px' }}>{profileData.username}</p>
+        <p style={{ marginBottom: '10px' }}>{profileData.email}</p>
+      </div>
     </div>
   );
 };

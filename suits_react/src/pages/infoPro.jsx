@@ -4,6 +4,15 @@ import { useAuthContext } from "../context/authContext";
 import { API } from "../constant";
 import { useState } from "react";
 import { getToken } from "../helper";
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  .my-input::placeholder,
+  .my-password-input::placeholder {
+    color: white;
+    font-size: 22px;
+  }
+  `;
 
 const Profile = () => {
   const [loading, setLoading] = useState(false);
@@ -38,9 +47,11 @@ const Profile = () => {
   }
 
   return (
-    <Card className="profile_page_card">
+    <Card style={{ background: "#000000", paddingTop: "50px"}} headStyle={{color: "White"}}>
+        <h1 style={{ color:"white", fontFamily:"Poppins", fontSize:"32px", marginBottom: "0px"}}>Custom your profile !</h1>
       <Form
         layout="vertical"
+        style={{height: "81.6vh", width: "40vh"}}
         initialValues={{
           username: user?.username,
           email: user?.email,
@@ -54,7 +65,7 @@ const Profile = () => {
         <Row gutter={[16, 16]}>
           <Col md={8} lg={8} sm={24} xs={24}>
             <Form.Item
-              label="Username"
+              label=""
               name="username"
               rules={[
                 {
@@ -64,12 +75,12 @@ const Profile = () => {
                 },
               ]}
             >
-              <Input placeholder="Username" />
+              <Input className="my-input" placeholder="Username" style={{backgroundColor: "#000000",border: "none", borderBottom: "1px solid", borderColor: "lightgrey", borderRadius:"0px", paddingTop: '67px', color:"white", fontsize: "22px"}} />
             </Form.Item>
           </Col>
           <Col md={8} lg={8} sm={24} xs={24}>
             <Form.Item
-              label="Email"
+              label=""
               name="email"
               rules={[
                 {
@@ -79,12 +90,12 @@ const Profile = () => {
                 },
               ]}
             >
-              <Input placeholder="Email" />
+              <Input className="my-input" placeholder="Email address" style={{backgroundColor: "#000000",border: "none", borderBottom: "1px solid", borderColor: "lightgrey", borderRadius:"0px", paddingTop: '30px', color:"white", fontsize: "22px"}} />
             </Form.Item>
           </Col>
           <Col md={8} lg={8} sm={24} xs={24}>
             <Form.Item
-              label="Avatar Url"
+              label=""
               name="avatar_url"
               rules={[
                 {
@@ -92,12 +103,12 @@ const Profile = () => {
                 },
               ]}
             >
-                <Input placeholder="Avatar Url" />
+                <Input className="my-input" placeholder="Avatar Url" style={{backgroundColor: "#000000",border: "none", borderBottom: "1px solid", borderColor: "lightgrey", borderRadius:"0px", paddingTop: '30px', color:"white", fontsize: "22px"}} />
             </Form.Item>
           </Col>
           <Col md={8} lg={8} sm={24} xs={24}>
             <Form.Item
-              label="About"
+              label=""
               name="about"
               rules={[
                 {
@@ -105,12 +116,12 @@ const Profile = () => {
                 },
               ]}
             >
-              <Input placeholder="About" />
+              <Input className="my-input" placeholder="Bio" style={{backgroundColor: "#000000",border: "none", borderBottom: "1px solid", borderColor: "lightgrey", borderRadius:"0px", paddingTop: '30px', color:"white", fontsize: "22px"}} />
             </Form.Item>
           </Col>
           <Col md={8} lg={8} sm={24} xs={24}>
             <Form.Item
-              label="LinkedIn Username"
+              label=""
               name="linkedIn_username"
               rules={[
                 {
@@ -118,12 +129,12 @@ const Profile = () => {
                 },
               ]}
             >
-              <Input placeholder="LinkedIn Username" />
+              <Input className="my-input" placeholder="Linkedin Username" style={{backgroundColor: "#000000",border: "none", borderBottom: "1px solid", borderColor: "lightgrey", borderRadius:"0px", paddingTop: '30px', color:"white", fontsize: "22px"}} />
             </Form.Item>
           </Col>
           <Col md={8} lg={8} sm={24} xs={24}>
             <Form.Item
-              label="Github Username"
+              label=""
               name="github_username"
               rules={[
                 {
@@ -131,15 +142,17 @@ const Profile = () => {
                 },
               ]}
             >
-              <Input placeholder="Github Username" />
+              <Input className="my-input" placeholder="Github Username" style={{backgroundColor: "#000000",border: "none", borderBottom: "1px solid", borderColor: "lightgrey", borderRadius:"0px", paddingTop: '30px', color:"white", fontsize: "22px"}} />
             </Form.Item>
           </Col>
         </Row>
+        <Form.Item style={{ textAlign: "center"}}>
         <Button
           className="profile_save_btn"
           htmlType="submit"
           type="primary"
           size="large"
+          style={{ backgroundColor: "#ffffff", color:"black", padding: "0 80px", fontSize: "18px", borderRadius: '50px', fontFamily: "Poppins" }}
         >
           {loading ? (
             <>
@@ -149,6 +162,8 @@ const Profile = () => {
             "Save"
           )}
         </Button>
+        </Form.Item>
+        <GlobalStyle />
       </Form>
     </Card>
   );

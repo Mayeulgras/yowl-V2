@@ -172,7 +172,7 @@ const CSSReset = createGlobalStyle`
 
   body {
     font-size: 1.4rem;
-    font-family: sans-serif;
+    font-family: Poppins, sans-serif;
   }
 `;
 
