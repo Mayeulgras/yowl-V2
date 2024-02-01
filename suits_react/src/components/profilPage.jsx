@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import SignIn from '../pages/signIn';
 import profil from '../css/profil.css';
 import axios from 'axios';
-import { Settings } from 'react-feather'
+import { Settings, ArrowLeft } from 'react-feather'
 import { removeToken,removeId,removeUsername, removeImg } from '../helper';
 import { Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';

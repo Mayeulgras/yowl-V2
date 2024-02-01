@@ -5,6 +5,8 @@ import { API } from "../constant";
 import { useState } from "react";
 import { getToken } from "../helper";
 import { createGlobalStyle } from "styled-components";
+import { ArrowLeft } from "react-feather";
+import { Link } from "react-router-dom";
 
 const GlobalStyle = createGlobalStyle`
   .my-input::placeholder,
@@ -48,6 +50,9 @@ const Profile = () => {
 
   return (
     <Card style={{ background: "#000000", paddingTop: "50px"}} headStyle={{color: "White"}}>
+      <Link to="/profil">
+      <ArrowLeft style={{ position: 'absolute', top: '10px', left: '10px', color: 'white' }} />
+      </Link>
         <h1 style={{ color:"white", fontFamily:"Poppins", fontSize:"32px", marginBottom: "0px"}}>Custom your profile !</h1>
       <Form
         layout="vertical"
