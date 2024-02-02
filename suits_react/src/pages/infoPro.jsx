@@ -27,7 +27,6 @@ const Profile = () => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          // set the auth token to the user's jwt
           Authorization: `Bearer ${getToken()}`,
         },
         body: JSON.stringify(data),
@@ -121,10 +120,10 @@ const Profile = () => {
                 },
               ]}
             >
-              <Input className="my-input" placeholder="Bio" style={{backgroundColor: "#000000",border: "none", borderBottom: "1px solid", borderColor: "lightgrey", borderRadius:"0px", paddingTop: '30px', color:"white", fontsize: "22px"}} />
+              <Input className="my-input" placeholder="Bio" maxLength={80} style={{backgroundColor: "#000000",border: "none", borderBottom: "1px solid", borderColor: "lightgrey", borderRadius:"0px", paddingTop: '30px', color:"white", fontsize: "22px"}} />
             </Form.Item>
           </Col>
-          <Col md={8} lg={8} sm={24} xs={24}>
+          {/* <Col md={8} lg={8} sm={24} xs={24}>
             <Form.Item
               label=""
               name="linkedIn_username"
@@ -136,7 +135,7 @@ const Profile = () => {
             >
               <Input className="my-input" placeholder="Linkedin Username" style={{backgroundColor: "#000000",border: "none", borderBottom: "1px solid", borderColor: "lightgrey", borderRadius:"0px", paddingTop: '30px', color:"white", fontsize: "22px"}} />
             </Form.Item>
-          </Col>
+          </Col> */}
           <Col md={8} lg={8} sm={24} xs={24}>
             <Form.Item
               label=""

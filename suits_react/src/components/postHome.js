@@ -8,9 +8,7 @@ export const refreshPage = () =>{
 function Post() {
     const [posts, setPosts] = useState([]);
     const [files, setFiles] = useState([]);
-    const [heartLogoColor, setHeartLogoColor] = useState("#000000");
     const [likedPosts, setLikedPosts] = useState([]);
-    const [bookmarkLogoColor, setBookmarkLogoColor] = useState("#ffffff");
 
     const handleHeartLogoClick = (postId) => {
       if (likedPosts.includes(postId)) {
@@ -45,7 +43,7 @@ function Post() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch("http://localhost:1337/api/posts");
+        const response = await fetch("http://localhost:1337/api/posts?populate=*");
         const data = await response.json();
         setPosts(data);
       } catch (error) {
@@ -70,7 +68,6 @@ function Post() {
   return (
     <div style={{backgroundColor: '#000000', marginTop: '15.2%', padding: '20px'}}>
       {Array.isArray(posts.data) && posts.data.map((post, index) => {
-        const matchingFile = files.find(file => file.id === post.id);
         const isLastItem = index === posts.data.length - 1;
   
         return (
@@ -81,9 +78,9 @@ function Post() {
               <img src={post.attributes.av} alt="Avatar" style={{ width: '50px', borderRadius: '50%', marginRight: '10px', marginBottom: "15px" }} />
               <p style={{ color: '#ffffff', fontSize: '30px', fontFamily: 'Poppins', fontWeight: 'bold', paddingBottom: '15px' }}>{post.attributes.user}</p>
             </div>
-              {matchingFile && (
-                <img src={`http://localhost:1337${matchingFile.formats.thumbnail.url}`} alt={post.attributes.description} style={{marginBottom: '10px', width: '100%'}} />
-              )}
+            {post?.attributes?.image?.data?.attributes?.formats?.thumbnail?.url ? (
+                <img src={`http://localhost:1337${post?.attributes?.image?.data?.attributes?.formats?.thumbnail?.url}`} alt={post.attributes.description} style={{marginBottom: '10px', width: '100%'}} />
+            ) : null}
               <p style={{ color: '#ffffff', fontSize: '15px', fontFamily: 'Poppins', fontWeight: 'Regular', paddingBottom: "15px" }}>{post.attributes.description}</p>
               <a href={post.attributes.link} target="_blank" rel="noopener noreferrer" style={{ color: '#94a3b8', textDecoration: 'none', overflowWrap: 'break-word', paddingBottom: "25px"}}>
                 {post.attributes.wordLink}

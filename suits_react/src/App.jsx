@@ -7,6 +7,7 @@ import Search from './pages/search';
 import SignUp from './pages/signUp';
 import SignIn from './pages/signIn';
 import InfoPro from './pages/infoPro';
+import Params from './pages/params';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
       <Route path="/post" element={<Post />} />
       <Route path="/profil" element={<Profil />} />
       <Route path="/search" element={<Search />} />
+      <Route path="/params" element={<Params />} />
       </Routes>
           // <Layout>
           //   <Row gutter={[0, 32]}>

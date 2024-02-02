@@ -29,7 +29,7 @@ const SearchPage = () => {
         type="text"
         value={searchTerm}
         onChange={e => setSearchTerm(e.target.value)}
-        className="my-input" placeholder="Search" style={{width:"70%", backgroundColor: "#000000",border: "none", borderBottom: "1px solid", borderColor: "lightgrey", borderRadius:"0px",paddingTop: "30px", color:"white", fontsize: "22px"}}
+        className="my-input" placeholder="Search" style={{width:"70%", backgroundColor: "#000000",border: "none", borderBottom: "1px solid", borderColor: "lightgrey", borderRadius:"0px",paddingTop: "30px", color:"white", fontsize: "22px", outline: "none"}}
       />
       <div style={{ width: '80%', maxWidth: '500px' }}>
         {searchTerm && filteredProfiles.map(profile => (
