@@ -4,9 +4,11 @@ import { refreshPage } from "./postHome";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { getToken } from "../helper";
+import { Alert } from "antd";
 
 const MyForm = ({ userId }) => {
   const navigate = useNavigate();
+  const [showAlert, setShowAlert] = useState(false);
   const [description, setDescription] = useState("");
   const [wordLink, setWordLink] = useState("");
   const [link, setLink] = useState("");
@@ -20,6 +22,14 @@ const MyForm = ({ userId }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      console.error("No token found in localStorage. Cannot make a post.");
+      setShowAlert(true);
+      return;
+    }
+
     try {
       const postData = new FormData();
       postData.append('files.image', image);
@@ -33,12 +43,16 @@ const MyForm = ({ userId }) => {
   
       const postResponse = await fetch('http://localhost:1337/api/posts?populate=*', {
         method: 'POST',
-        body: postData
+        body: postData,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       const responseData = await postResponse.json();
       console.log("POST request successful:", responseData);
     } catch (error) {
       console.error("Error making POST request:", error);
+      setShowAlert(true);
     }
     navigate("/");
   };
@@ -55,11 +69,14 @@ const MyForm = ({ userId }) => {
         backgroundColor: "#000000",
       }}
     >
+      
       <h1
         style={{ marginBottom: "20px", color: "white", fontFamily: "Poppins" }}
       >
         Make a post !
       </h1>
+      {showAlert && <Alert message="You're not connected !" type="error" />}
+
       <input
         value={description}
         onChange={(e) => setDescription(e.target.value)}

@@ -7,6 +7,9 @@ import { LogIn } from "react-feather";
 
 const windowDimension = window.innerWidth;
 const isMobile = windowDimension <= 640;
+const handleLogout = () => {
+  localStorage.clear();
+};
 
 const TopBar = () => {
   return (
@@ -19,8 +22,8 @@ const TopBar = () => {
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
           <p style={{marginLeft: "-20%", marginTop: "6%", marginRight: "20%"}}>No account ?</p>
-          <Link to="/signIn">
-          <LogIn style={{marginLeft: "-55%", marginTop: "8%", color: "white"}}/>
+          <Link to="/signIn" onClick={handleLogout}>
+            <LogIn style={{marginLeft: "-55%", marginTop: "8%", color: "white"}}/>
           </Link>
           </div>
         </div>

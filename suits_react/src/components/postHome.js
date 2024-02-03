@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { createGlobalStyle } from "styled-components";
-import { Heart, Bookmark, X } from 'react-feather';
+import { Heart, X } from 'react-feather';
+import { Modal, Button } from 'antd';
+
+
 export const refreshPage = () =>{
   window.location.reload(false);
   }
   
 function Post() {
+
+
     const [posts, setPosts] = useState([]);
     const [files, setFiles] = useState([]);
     const [likedPosts, setLikedPosts] = useState([]);
+    const [showCookieModal, setShowCookieModal] = useState(false);
+
 
     const handleHeartLogoClick = (postId) => {
       if (likedPosts.includes(postId)) {
@@ -40,6 +47,26 @@ function Post() {
     refreshPage();
   }
 
+  const handleAccept = () => {
+    localStorage.setItem('cookieConsent', 'accepted');
+    setShowCookieModal(false);
+  };
+
+  const handleReject = () => {
+    localStorage.setItem('cookieConsent', 'rejected');
+    setShowCookieModal(false);
+  };
+
+
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    const cookieConsent = localStorage.getItem('cookieConsent');
+    if (!token && !cookieConsent) {
+      setShowCookieModal(true);
+    }
+  }, []);
+
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -67,6 +94,22 @@ function Post() {
 
   return (
     <div style={{backgroundColor: '#000000', marginTop: '15.2%', padding: '20px'}}>
+      <Modal
+        title="Cookie Policy"
+        visible={showCookieModal}
+        onOk={handleAccept}
+        onCancel={handleReject}
+        footer={[
+          <Button key="reject" onClick={handleReject}>
+            I Do Not Accept
+          </Button>,
+          <Button key="accept" type="primary" onClick={handleAccept}>
+            I Accept
+          </Button>,
+        ]}
+      >
+        <p>We use cookies to improve your experience. By using our site, you agree to our use of cookies.</p>
+      </Modal>
       {Array.isArray(posts.data) && posts.data.map((post, index) => {
         const isLastItem = index === posts.data.length - 1;
   

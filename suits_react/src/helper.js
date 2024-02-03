@@ -2,6 +2,7 @@ import { AUTH_TOKEN } from "./constant";
 import { ID } from "./constant";
 import { USERNAME } from "./constant";
 import { IMG } from "./constant";
+import { P } from "./constant";
     
 export const getToken = () => {
   return localStorage.getItem(AUTH_TOKEN);
@@ -57,4 +58,8 @@ export const setImg = (I) => {
 
 export const removeImg = () => {
   localStorage.removeItem(IMG);
+};
+
+export const removePrivacy = () => {
+  localStorage.removeItem(P);
 };

@@ -5,21 +5,21 @@ import SignIn from '../pages/signIn';
 import profil from '../css/profil.css';
 import axios from 'axios';
 import { Settings, ArrowLeft } from 'react-feather'
-import { removeToken,removeId,removeUsername, removeImg } from '../helper';
+import { removeToken,removeId,removeUsername, removeImg, removePrivacy } from '../helper';
 import { Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
 const menu = (
   <Menu>
     <Menu.Item>
-      <Link to="/params">
+      <Link to="/CGU">
         CGU
       </Link>
     </Menu.Item>
     <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
-        Option 2
-      </a>
+    <Link to="/Privacy">
+        Privacy Policy
+      </Link>
     </Menu.Item>
   </Menu>
 );
@@ -32,6 +32,7 @@ const logout = () => {
   removeToken('authToken');
   removeUsername('username');
   removeImg('avatar');
+  removePrivacy('privacyAccepted');
   navigate("/signIn");
   message.success(`Disconnected successfully!`);
   };

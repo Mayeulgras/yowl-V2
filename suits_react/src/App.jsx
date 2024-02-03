@@ -7,7 +7,8 @@ import Search from './pages/search';
 import SignUp from './pages/signUp';
 import SignIn from './pages/signIn';
 import InfoPro from './pages/infoPro';
-import Params from './pages/params';
+import CGU from './pages/CGU';
+import Privacy from './pages/Privacy';
 
 const App = () => {
   return (
@@ -19,7 +20,8 @@ const App = () => {
       <Route path="/post" element={<Post />} />
       <Route path="/profil" element={<Profil />} />
       <Route path="/search" element={<Search />} />
-      <Route path="/params" element={<Params />} />
+      <Route path="/CGU" element={<CGU />} />
+      <Route path="/Privacy" element={<Privacy />} />
       </Routes>
           // <Layout>
           //   <Row gutter={[0, 32]}>
