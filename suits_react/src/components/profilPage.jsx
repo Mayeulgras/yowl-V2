@@ -76,7 +76,9 @@ const logout = () => {
       {userData && (
         <div style={{ backgroundColor: '#000000', color: '#333', padding: '20px', borderRadius: '5px', width: '80%', margin: '20px auto', boxShadow: '0 2px 5px rgba(0, 0, 0, 0.15)', transition: 'all 0.3s linear' }}>
 
-          <img src={userData.avatar_url} alt="Avatar" style={{ width: '150px', height: '150px', borderRadius: '50%', objectFit: 'cover', marginBottom: '20px', marginLeft: "25%"}} />
+          {userData.avatar_url ? (
+            <img src={userData.avatar_url} alt="Avatar" style={{ width: '150px', height: '150px', borderRadius: '50%', objectFit: 'cover', marginBottom: '20px', marginLeft: "25%"}} />
+          ) : null}
           <p style={{ fontSize: "30px", color: "white", marginBottom: '0px', display: "block", textAlign: "center"}}><strong>{userData.username}</strong></p>
           <div style={{ display: 'flex', justifyContent: "center" }}>
             

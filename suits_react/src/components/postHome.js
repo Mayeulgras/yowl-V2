@@ -118,7 +118,9 @@ function Post() {
             {post.attributes.user === loggedInUsername && <X onClick={() => handleDeleteTweet(post.id, post.attributes.user)} size={24} color="gray" style={{ position: 'absolute', top: '10px', right: '10px' }} />}
             <div>
             <div style={{ display: 'flex', alignItems: 'center' }}>
+            {post.attributes.av ? (
               <img src={post.attributes.av} alt="Avatar" style={{ width: '50px', borderRadius: '50%', marginRight: '10px', marginBottom: "15px" }} />
+            ) : null}
               <p style={{ color: '#ffffff', fontSize: '30px', fontFamily: 'Poppins', fontWeight: 'bold', paddingBottom: '15px' }}>{post.attributes.user}</p>
             </div>
             {post?.attributes?.image?.data?.attributes?.formats?.thumbnail?.url ? (
