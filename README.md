@@ -3,35 +3,58 @@
 
 ## Description
 
-yowl-V2 est une application de publication de posts. Les utilisateurs peuvent créer des posts avec une description, un lien, un mot pour le lien et une image.
+SUIT is a post publishing application. Users can create posts with a description, a link, a word for the link and an image.
 
 ## Installation
 
-Pour installer et lancer le projet, suivez les étapes suivantes :
+To install and launch the project, follow these steps:
 
 
-2. Accédez au dossier du projet :
+2. Access the project file :
    
-    ```bash
-    cd .\strapi\ 
-    ```
+```bash
+cd .\strapi\ 
+```
+Install the dependencies with this command :
 
-Puis entrez :
+````bash
+npm i
+````
 
-    ```bash
-    cd .\strapi\ 
-    ```
+Then enter this command to start strapi :
+
+```bash
+npm run develop 
+```
+
+Access the React folder with this command in another terminal :
+
+````bash
+cd .\suits_react\
+````
+
+Install the dependencies with this command :
+
+````bash
+npm i
+````
+
+Then enter this command to launch React :
+
+````bash
+npm start
+````
 
 
-3. Installez les dépendances :
+## Use
 
-4. Lancez le projet :
-## Utilisation
+Once you've launched the project, you can access the application in your browser at `http://localhost:3001`.
 
-Une fois que vous avez lancé le projet, vous pouvez accéder à l'application dans votre navigateur à l'adresse `http://localhost:3000`.
+To create a post, fill in the fields "Description", "Link", "Word for link" and select an image, then click on the "Post" button.
 
-Pour créer un post, remplissez les champs "Description", "Link", "Word for link" et sélectionnez une image, puis cliquez sur le bouton "Post".
-
-## Licence
-
-Ce projet est sous licence MIT.
+---
+Mayeul Gras<br />
+Maxime Brault<br />
+Luciano Barberis<br />
+Romain Belin<br />
+Vinh Enzo Nguyen
